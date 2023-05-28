@@ -1,0 +1,25 @@
+import React, {useEffect} from 'react';
+import {useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {getTitleDetail} from "../features/slice";
+
+const Details = () => {
+    const data = useParams()
+    const dispatch = useDispatch()
+
+    useEffect(() =>{
+        dispatch(getTitleDetail({category: data.category, title: data.title}))
+    })
+
+    const movieDetail = useSelector(state => state.popular1.titleDetail)
+    return (
+        <div>
+            <div className="detail-images">
+                <img src={`https://image.tmdb.org/t/p/original${movieDetail[0].poster_path}`} alt=""/>
+                <img src={`https://image.tmdb.org/t/p/original${movieDetail[0].backdrop_path}`} alt=""/>
+            </div>
+        </div>
+    );
+};
+
+export default Details;
