@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Popular = () => {
+const Home = () => {
     return (
         <div>
-            popoular
+            Home
         </div>
     );
 };
 
-export default Popular;
+export default Home;

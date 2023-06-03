@@ -1,0 +1,33 @@
+.container-posters {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.LoadMore {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.LoadMore div {
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 8px 13px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: all .3s ease;
+}
+
+.LoadMore div:hover {
+    color: grey;
+    border-color: grey;
+}
+
+.LoadMore div:active {
+    transform: scale(1.1);
+}

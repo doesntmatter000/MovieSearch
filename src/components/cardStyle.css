@@ -1,21 +1,17 @@
-import React from 'react';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faStar} from "@fortawesome/free-solid-svg-icons";
+.container {
+    display: flex;
+    justify-content: center;
+}
+.card {
+    height: 400px;
+    width: 80%;
+    background-color: grey;
+    color: white;
+    border-radius: 15px;
+}
 
-const Card = () => {
-    return (
-        <div key={item.id} className="card">
-            <img src={`https://image.tmdb.org/t/p/original${item.known_for[0].backdrop_path}`} alt=""/>{item.name}
-            <div className="card-item">
-                <h2 className="card-item-title">{item.known_for[0].name}</h2>
-                <div className="card-item-flex">
-                    <div className="card-info">{item.known_for[0].first_air_date}</div>
-                    <div className="card-info">{item.known_for[0].vote_average} <FontAwesomeIcon icon={faStar} /></div>
-                </div>
-                <p className="card-item-text">{item.known_for[0].overview}</p>
-            </div>
-        </div>
-    );
-};
-
-export default Card;
+.card img {
+    border-radius: 15px;
+    object-fit: cover;
+    height: 100%;
+}
