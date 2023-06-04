@@ -31,20 +31,13 @@ export const getUpcomingMovies = createAsyncThunk(
 
         const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${index}`;
         const response = await axios.get(url, options)
+        return response.data
     }
 )
 
 export const getTitleDetail = createAsyncThunk(
     'popular/getTitleDetail',
     async function(title ) {
-
-        const options = {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZDQzNTRjMjFiZjVhM2U0Y2Q0Zjc3OTExN2Q4YmVlMyIsInN1YiI6IjY0NmNmMmQwNTRhMDk4MDExYjJjY2RhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7_f3aP9GV5fUdmSvkyQX9W43rJR-dVm3J3iA-eBvwBw'
-            }
-        };
 
         const url = `https://www.omdbapi.com/?t=${title}&apikey=167ca1c0`
         const response = await axios.get(url)
