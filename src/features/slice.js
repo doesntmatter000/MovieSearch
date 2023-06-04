@@ -31,13 +31,13 @@ export const getUpcomingMovies = createAsyncThunk(
 
         const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${index}`;
         const response = await axios.get(url, options)
-        return response.data
     }
 )
 
 export const getTitleDetail = createAsyncThunk(
     'popular/getTitleDetail',
-    async function(title) {
+    async function(title ) {
+
         const options = {
             method: 'GET',
             headers: {

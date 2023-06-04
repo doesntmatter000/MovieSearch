@@ -1,0 +1,58 @@
+.content {
+    display: flex;
+    padding-top: 100px;
+    align-items: center;
+}
+
+.content-left {
+    flex: 2;
+}
+
+.content-right {
+    flex: 1;
+}
+
+.content-title {
+    font-size: 30px;
+}
+
+.content-ratings {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 30px;
+    padding-top: 25px;
+    font-size: 15px;
+}
+
+.content-ratings div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.content-text {
+    padding-top: 20px;
+    width: 60%;
+    font-size: 13px;
+}
+
+.content-description {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-description-item {
+    display: flex;
+    gap: 35px;
+}
+
+.content-description-item + .content-description-item {
+    margin-top: 15px;
+}
+
+.content-description-item span:nth-child(1) {
+    width: 15%;
+}
+

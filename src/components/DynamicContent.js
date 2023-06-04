@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Carousel} from "react-responsive-carousel";
 import {useDispatch, useSelector} from "react-redux";
-import Card from "../components/card";
-import DynamicCard from "../components/popularCard";
+import Card from "./Card";
+import DynamicCard from "./PopularCard";
 import "./DynamicStyle.css"
 import SkeletonCard from "../components/SkeletonCard";
 
@@ -11,14 +11,29 @@ const DynamicContent = ({get, data}) => {
     const fetchResults = data
     const isLoading = useSelector(state => state.popular1.isLoading)
 
+    const [showArrows, setShowArrows] = useState(false);
+
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(get(index))
+        const handleResize = () =>
+        {
+            if (window.innerWidth >= 768) {
+                setShowArrows(true);
+            } else {
+                setShowArrows(false);
+            }
+        }
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     },[])
 
     return (
         <div>
-            <Carousel showStatus={false} showIndicators={false} showArrows = {false} infiniteLoop={true} autoPlay={true} interval={2000} showThumbs={false}>
+            <Carousel showStatus={false} showIndicators={false} showArrows = {showArrows} infiniteLoop={true} autoPlay={true} interval={2000} showThumbs={false}>
                 {fetchResults.map(item => (<Card key={item.id} id={item.id} name={item.name} img={item.backdrop_path}/>))}
             </Carousel >
             <div className="container-posters">
