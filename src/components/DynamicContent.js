@@ -6,30 +6,36 @@ import DynamicCard from "./PopularCard";
 import "./DynamicStyle.css"
 import SkeletonCard from "../components/SkeletonCard";
 
-const DynamicContent = ({get, data}) => {
-    const index = useSelector(state => state.popular1.pageIndex)
-    const fetchResults = data
+const DynamicContent = ({get, data, index}) => {
+    const indexCount = index()
     const isLoading = useSelector(state => state.popular1.isLoading)
-
     const [showArrows, setShowArrows] = useState(false);
 
     const dispatch = useDispatch()
+    const fetchResults = data()
+
+
     useEffect(() => {
-        dispatch(get(index))
-        const handleResize = () =>
-        {
-            if (window.innerWidth >= 768) {
-                setShowArrows(true);
-            } else {
-                setShowArrows(false);
-            }
+        if (indexCount <= 1) {
+            dispatch(get({index: 0, bool: false}))
+        }
+
+        handleResize();
+    },[])
+
+    const handleResize = () =>
+    {
+        if (window.innerWidth >= 768) {
+            setShowArrows(true);
+        } else {
+            setShowArrows(false);
         }
         window.addEventListener('resize', handleResize);
-        handleResize();
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    },[])
+    }
+
 
     return (
         <div>
@@ -53,7 +59,7 @@ const DynamicContent = ({get, data}) => {
                     ))}
             </div>
             <div className="LoadMore">
-                <div onClick={() => dispatch(get(index))}>Load More</div>
+                <div onClick={() => dispatch(get({index: indexCount, bool: true}))}>Load More</div>
             </div>
         </div>
     );

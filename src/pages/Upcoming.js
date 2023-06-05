@@ -4,10 +4,11 @@ import {useSelector} from "react-redux";
 import {getUpcomingMovies} from "../features/slice";
 
 const Upcoming = () => {
-    const data = useSelector(state => state.popular1.upcomingMovies)
+    const useData = () => useSelector(state => state.popular1.upcomingMovies)
+    const useIndex = () => useSelector(state => state.popular1.indexUpcoming)
     return (
         <>
-            <DynamicContent data={data} get={getUpcomingMovies}/>
+            <DynamicContent data={useData} get={getUpcomingMovies} index={useIndex}/>
         </>
     );
 };

@@ -19,6 +19,7 @@
     filter: brightness(.7);
     position: relative;
     object-fit: cover;
+    object-position: center;
 }
 
 .image-content {

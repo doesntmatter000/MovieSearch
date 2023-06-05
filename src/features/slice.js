@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getPopularMovies = createAsyncThunk(
     'popular/getPopularMovies',
-    async function(index) {
+    async function({index, bool}) {
         const options = {
             method: 'GET',
             headers: {
@@ -12,15 +12,23 @@ export const getPopularMovies = createAsyncThunk(
             }
         };
 
-        const url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${index}`;
-        const response = await axios.get(url, options)
-        return response.data
+        let Data
+        if (bool === false) {
+            const url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${1}`;
+            const response = await axios.get(url, options)
+            Data = response.data
+        } else if (bool === true) {
+            const url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${index}`;
+            const response = await axios.get(url, options)
+            Data = response.data
+        }
+        return Data
     }
 )
 
 export const getUpcomingMovies = createAsyncThunk(
     'popular/getUpcomingMovies',
-    async function(index) {
+    async function({index, bool}) {
         const options = {
             method: 'GET',
             headers: {
@@ -29,9 +37,17 @@ export const getUpcomingMovies = createAsyncThunk(
             }
         };
 
-        const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${index}`;
-        const response = await axios.get(url, options)
-        return response.data
+        let Data
+        if (bool === false) {
+            const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${1}`;
+            const response = await axios.get(url, options)
+            Data = response.data
+        } else if (bool === true) {
+            const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${index}`;
+            const response = await axios.get(url, options)
+            Data = response.data
+        }
+        return Data
     }
 )
 
@@ -52,7 +68,8 @@ export const getTitleDetail = createAsyncThunk(
         upcomingMovies: [],
         isLoading: false,
         titleDetail: [],
-        pageIndex: 1
+        indexPopular: 1,
+        indexUpcoming: 1
     },
     reducers: {},
      extraReducers: {
@@ -60,17 +77,18 @@ export const getTitleDetail = createAsyncThunk(
             state.isLoading = !state.isLoading
         },
         [getPopularMovies.fulfilled]: (state, action) => {
-            state.popularMovies = [...state.popularMovies, ...action.payload.results]
-            state.pageIndex++
-            state.isLoading = !state.isLoading
+                state.popularMovies = [...state.popularMovies, ...action.payload.results]
+                state.indexPopular++
+                state.isLoading = !state.isLoading
+
         },
          [getUpcomingMovies.pending]: (state) => {
              state.isLoading = !state.isLoading
          },
          [getUpcomingMovies.fulfilled]: (state, action) => {
-             state.upcomingMovies = [...state.upcomingMovies, ...action.payload.results]
-             state.isLoading = !state.isLoading
-             state.pageIndex++
+                 state.upcomingMovies = [...state.upcomingMovies, ...action.payload.results]
+                 state.indexUpcoming++
+                 state.isLoading = !state.isLoading
          },
         [getTitleDetail.pending]: (state) => {
             state.isLoading = !state.isLoading

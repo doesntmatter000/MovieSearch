@@ -4,10 +4,11 @@ import {getPopularMovies} from "../features/slice";
 import {useSelector} from "react-redux";
 
 const Popular = () => {
-    const data = useSelector(state => state.popular1.popularMovies)
+    const useData = () => useSelector(state => state.popular1.popularMovies)
+    const useIndex = () => useSelector(state => state.popular1.indexPopular)
     return (
         <>
-            <DynamicContent get={getPopularMovies} data={data}/>
+            <DynamicContent get={getPopularMovies} data={useData} index={useIndex}/>
         </>
     );
 };

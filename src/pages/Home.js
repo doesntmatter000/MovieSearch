@@ -6,9 +6,10 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import "./HomeStyle.css"
 import {faCalendar, faHourglass, faStar, faThumbsUp} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Skeleton from "react-loading-skeleton";
 
 const Home = () => {
-
+    let isLoading = useSelector(state => state.popular1.isLoading)
     const data = useSelector(state => state.popular1.titleDetail)
 
     return (
@@ -59,7 +60,8 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="content-right"><LazyLoadImage src={data.Poster} alt="Img"/></div>
+                {isLoading ? (<Skeleton width={300} height={400}/>) : (<div className="content-right"><LazyLoadImage src={data.Poster} alt="Img"/></div>)}
+
             </div>
         </>
     );

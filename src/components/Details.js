@@ -25,8 +25,8 @@ const Details = () => {{}
             <div className="detail-images">
                 {!movieDetail ? <Skeleton width={100} height={460}/> : <img src={`https://image.tmdb.org/t/p/original/${data.img2}`} alt="image"/>}
                 <div className="image-content">
-                    <h2>{isLoading ? <Skeleton width={100} height={20} cout={1}/> : movieDetail.Title === "N/A" ? " " : movieDetail.Title}</h2>
-                    <p>{isLoading ? <Skeleton width={100} height={20} count={1}/> : movieDetail.Plot === "N/A" ? " " : movieDetail.Plot + "..."}</p>
+                    <h2>{isLoading ? <Skeleton width={100} height={20}/> : movieDetail.Title === "N/A" ? " " : movieDetail.Title}</h2>
+                    <p>{isLoading ? <Skeleton width={100} height={20}/> : movieDetail.Plot === "N/A" ? " " : movieDetail.Plot + "..."}</p>
                 </div>
             </div>
             {isLoading ? <Skeleton height={50} width={100}/> :
